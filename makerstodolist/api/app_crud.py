@@ -55,3 +55,27 @@ def delete_task(data, user_id, date, task_id, file_name):
     if user_id in data and date in data[user_id] and task_id in data[user_id][date]:
         del data[user_id][date][task_id]
         write_json(data, file_name)
+
+def add_subtask(data, user_id, date, task_id, subtask_id, subtask):
+    task = get_task_id(data, user_id, date, task_id)
+    if task:
+        task.setdefault('subtasks', {})[subtask_id] = subtask
+        write_json(data, "tasks.json")
+        return True
+    return False
+
+def update_subtask(data, user_id, date, task_id, subtask_id, subtask):
+   task = get_task_id(data, user_id, date, task_id)
+   if task and subtask_id in task.get('subtasks', {}):
+      task['subtasks'][subtask_id].update(subtask)
+      write_json(data, "tasks.json")
+      return True
+   return False
+
+def delete_subtask(data, user_id, date, task_id, subtask_id):
+   task = get_task(data, user_id, date, task_id)
+   if task and subtask_id in task.get('subtasks', {}):
+      del task['substacks'][subtask_id]
+      write_json(data, "tasks.json")
+      return True
+   return False
