@@ -33,10 +33,10 @@ export class AppComponent {
 
 
   allItems: Item[] = [
-    { id: 1, completado: true, titulo: "eat", fecha: today, subtasks: [] },
-    { id: 2,completado: true, titulo: "sleep", fecha: today, subtasks: [] },
-    { id: 3, completado: false, titulo: "play", fecha: today, subtasks: [] },
-    { id: 4, completado: false, titulo: "laugh", fecha: today, subtasks: [] }
+    { id: 1, completado: true, titulo: "eat", fecha: today, subitems: [{ id: 70, completado: true, titulo: "subtask", fecha: today,subitems: []}, { id: 70, completado: true, titulo: "subtask", fecha: today,subitems: []}, { id: 70, completado: true, titulo: "subtask", fecha: today,subitems: []}] },
+    { id: 2,completado: true, titulo: "sleep", fecha: today, subitems: [] },
+    { id: 3, completado: false, titulo: "play", fecha: today, subitems: [] },
+    { id: 4, completado: false, titulo: "laugh", fecha: today, subitems: [] }
   ];
 
   get items() {
@@ -56,7 +56,7 @@ export class AppComponent {
       completado: false,
       titulo: titulo,
       fecha: today,
-      subtasks: []
+      subitems: []
     });
   }
 

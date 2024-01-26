@@ -1,36 +1,62 @@
+<!-- item.component.html -->
 <div class="item">
-    <input
-      [id]="item.titulo"
-      type="checkbox"
-      (change)="item.completado = !item.completado"
-      [checked]="item.completado" />
-    <label [for]="item.titulo">{{item.titulo}}</label>
-  
-    <div class="btn-wrapper" *ngIf="!editable">
-      <button class="btn" (click)="editable = !editable">Edit</button>
-      <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
-    </div>
-  
-    <!-- This section shows only if user clicks Edit button -->
-    <div *ngIf="editable">
-      <input
-        class="sm-text-input"
-        placeholder="edit item"
-        [value]="item.titulo"
-        #editedItem
-        (keyup.enter)="saveItem(editedItem.value)" />
-  
-      <div class="btn-wrapper">
-        <button class="btn" (click)="editable = !editable">Cancel</button>
-        <button class="btn btn-save" (click)="saveItem(editedItem.value)">
-          Save
-        </button>
-        <button id="btn-special" (click)="simplify(editedItem.value)">
-            <i class="fas fa-magic"></i> <!-- Font Awesome magic icon -->
+  <input
+    [id]="item.titulo"
+    type="checkbox"
+    (change)="item.completado = !item.completado"
+    [checked]="item.completado" />
+  <label [for]="item.titulo">{{ item.titulo }}</label>
 
-            Make it simple
-          </button>
-      </div>
+  <!-- Handle sub-items -->
+  <div *ngIf="item.subitems">
+    <div *ngFor="let subitem of item.subitems" class="subitem">
+      <input
+        [id]="subitem.titulo"
+        type="checkbox"
+        (change)="subitem.completado = !subitem.completado"
+        [checked]="subitem.completado" />
+      <label [for]="subitem.titulo">{{ subitem.titulo }}</label>
+
+      <!-- Small delete button for sub-item -->
+      <button class="btn btn-warn" (click)="removeSubItem(subitem)">Delete</button>
     </div>
   </div>
-  
+
+  <div class="btn-wrapper" *ngIf="!editable">
+    <button class="btn" (click)="editable = !editable">Edit</button>
+    <button class="btn btn-warn" (click)="remove.emit()">Delete</button>
+  </div>
+
+  <!-- This section shows only if user clicks Edit button -->
+  <div *ngIf="editable">
+    <input
+      class="sm-text-input"
+      placeholder="edit item"
+      [value]="item.titulo"
+      #editedItem
+      (keyup.enter)="saveItem(editedItem.value)" />
+
+    <!-- Edit section for sub-items -->
+    <div *ngIf="item.subitems">
+      <div *ngFor="let subitem of item.subitems" class="subitem">
+        <input
+          class="sm-text-input"
+          placeholder="edit sub-item"
+          [value]="subitem.titulo"
+          #editedSubItem
+          (keyup.enter)="saveSubItem(subitem, editedSubItem.value)" />
+      </div>
+    </div>
+
+    <div class="btn-wrapper">
+      <button class="btn" (click)="editable = !editable">Cancel</button>
+      <button class="btn btn-save" (click)="saveItem(editedItem.value)">
+        Save
+      </button>
+      <button id="btn-special" (click)="simplify(editedItem.value)">
+        <i class="fas fa-magic"></i> <!-- Font Awesome magic icon -->
+        Make it simple
+      </button>
+    </div>
+  </div>
+</div>

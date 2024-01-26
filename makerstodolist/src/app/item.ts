@@ -3,7 +3,7 @@ export interface Item {
     completado: boolean; 
     titulo: string; 
     fecha: Date;
-    subtasks: Item[];
+    subitems?: Item[];
 
   }
 
