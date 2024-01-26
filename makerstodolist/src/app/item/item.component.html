@@ -1,10 +1,10 @@
 <div class="item">
     <input
-      [id]="item.description"
+      [id]="item.titulo"
       type="checkbox"
-      (change)="item.done = !item.done"
-      [checked]="item.done" />
-    <label [for]="item.description">{{item.description}}</label>
+      (change)="item.completado = !item.completado"
+      [checked]="item.completado" />
+    <label [for]="item.titulo">{{item.titulo}}</label>
   
     <div class="btn-wrapper" *ngIf="!editable">
       <button class="btn" (click)="editable = !editable">Edit</button>
@@ -16,7 +16,7 @@
       <input
         class="sm-text-input"
         placeholder="edit item"
-        [value]="item.description"
+        [value]="item.titulo"
         #editedItem
         (keyup.enter)="saveItem(editedItem.value)" />
   

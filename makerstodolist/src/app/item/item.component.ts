@@ -17,7 +17,7 @@ export class ItemComponent {
   saveItem(description: string) {
     if (!description) return;
     this.editable = false;
-    this.item.description = description;
+    this.item.titulo = description;
   }
 
   simplify(description: string)
