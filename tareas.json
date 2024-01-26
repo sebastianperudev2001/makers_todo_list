@@ -1,0 +1,22 @@
+{
+    "IDTAREA1" : {
+        "titulo" : "Tarea 1",
+        "completada" : false,
+        "subtasks":{
+            "IDSUBTASK11" : {
+                "titulo" : "Subtarea 1",
+                "completada" : false
+            },
+            "IDSUBTASK12" : {
+                "titulo" : "Subtarea 2",
+                "completada" : false
+            }
+        }
+    },
+    "IDTAREA2" : {
+        "titulo" : "Tarea 2",
+        "completada" : false,
+        "subtasks":{
+        }
+    }
+}
